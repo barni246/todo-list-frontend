@@ -7,13 +7,36 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
-  email:string = "oooooooooooooooooo";
-  password:string = "";
+  username: string = "";
+  password: string = "";
 
-  
 
-login() {
 
-}
+  async login() {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      "username": this.username,
+      "password": this.password
+    });
+
+    const requestOptions: RequestInit = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+    try {
+      let resp = await fetch("http://localhost:8000/login/", requestOptions);
+      let json = await resp.json();
+      localStorage.setItem('token', json.token);
+      // TODO: Redirect
+    } catch(e){
+      // Show error message
+      console.error(e);
+
+    }
+  }
 
 }
