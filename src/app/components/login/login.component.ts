@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
@@ -14,7 +15,7 @@ export class LoginComponent {
   username: string = "";
   password: string = "";
 
-constructor(private as:AuthService) {
+constructor(private as:AuthService, private router: Router) {
 
 }
 
@@ -41,8 +42,10 @@ constructor(private as:AuthService) {
       // let json = await resp.json();
       // localStorage.setItem('token', json.token);
       // TODO: Redirect
+      this.router.navigateByUrl('/todos')
     } catch(e){
       // Show error message
+      alert('Login ist fehlgeschlagen!');
       console.error(e);
 
     }
