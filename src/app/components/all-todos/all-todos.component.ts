@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 export class AllTodosComponent implements OnInit {
   err:string = '';
   todos: any = [];
+  newTodo:string='';
 
   constructor(private http: HttpClient) { }
 
@@ -24,11 +25,12 @@ export class AllTodosComponent implements OnInit {
    
   }
 
-  loadTodos() {
-    const url = environment.baseUrl + "/todos/";
-    let headers = new HttpHeaders();
-    headers = headers.set('Authorization', 'Token '+localStorage.getItem('token'));
-    return lastValueFrom(this.http.get(url, {headers: headers}));
+  createNewTodo() {
+
   }
 
+  loadTodos() {
+    const url = environment.baseUrl + "/todos/";
+    return lastValueFrom(this.http.get(url));
+  }
 }

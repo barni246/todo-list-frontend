@@ -1,6 +1,14 @@
 
 <h1>{{err}}</h1>
+
+<form (ngSubmit)="createNewTodo()">
+    <input type="text" name="newTodo" [(ngModel)]="newTodo" required>
+    <button>new</button>
+</form>
+
+
 <div *ngFor="let todo of todos">
     <input type="checkbox" [checked]="todo.chacked">
     {{todo.title}}
 </div>
+

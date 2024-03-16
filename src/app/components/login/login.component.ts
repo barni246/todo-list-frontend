@@ -35,14 +35,13 @@ constructor(private as:AuthService, private router: Router) {
     //   redirect: 'follow'
     // };
     try {
-      let resp = await this.as.loginWithUsernameAndPassword(this.username, this.password);
+     //let resp = await this.as.loginWithUsernameAndPassword(this.username, this.password);
+      let resp:any = await this.as.loginWithUsernameAndPassword(this.username, this.password);
       console.log(resp);
-      // let resp = await fetch(enviroment.baseUrl+"/login/", requestOptions);
-      // // let resp = await fetch("http://localhost:8000/login/", requestOptions);
-      // let json = await resp.json();
-      // localStorage.setItem('token', json.token);
-      // TODO: Redirect
-      this.router.navigateByUrl('/todos')
+      localStorage.setItem('token', resp['token']);
+      this.router.navigateByUrl('/todos');
+
+
     } catch(e){
       // Show error message
       alert('Login ist fehlgeschlagen!');
