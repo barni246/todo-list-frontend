@@ -12,12 +12,23 @@ export class AuthService {
 
  public loginWithUsernameAndPassword(username:string,password:string) {
     const url = environment.baseUrl  + "/login/";
-  // const url = 'http://localhost:8000/login/';
    const body = {
      "username": username,
      "password": password
    };
      return   lastValueFrom(this.http.post(url,body));
  }
+
+
+ async createTodo() {
+  const url = environment.baseUrl + "/todos/";
+  const body = {
+    "title": "laufen",
+    "author":"laptop",
+    "chacked":false
+  };
+  console.log(body,url)
+  return lastValueFrom(this.http.post(url, body));
+}
 
 }

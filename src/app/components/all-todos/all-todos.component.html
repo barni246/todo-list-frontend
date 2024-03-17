@@ -1,14 +1,33 @@
 
 <h1>{{err}}</h1>
 
-<form (ngSubmit)="createNewTodo()">
+<form (ngSubmit)="createTodo()">
     <input type="text" name="newTodo" [(ngModel)]="newTodo" required>
-    <button>new</button>
+    <button type="submit">new</button>
 </form>
 
 
 <div *ngFor="let todo of todos">
     <input type="checkbox" [checked]="todo.chacked">
     {{todo.title}}
-</div>
+</div> 
+
+<!-- <div *ngFor="let todo of todos; let i = index">
+  <button (click)="updateTodos(todo)">save</button>
+    <ng-container *ngIf="!todo.editMode; else editMode">
+      
+    <input type="checkbox" [checked]="todo.chacked">
+      <span (click)="toggleEditMode(todo)">
+        {{ todo.title }}
+       
+      </span>
+    </ng-container>
+    
+    <ng-template #editMode>
+    <input type="checkbox" [checked]="todo.chacked">
+      <input type="text" [(ngModel)]="todo.title" (blur)="toggleEditMode(todo)">
+     
+    </ng-template>
+  </div> -->
+  
 

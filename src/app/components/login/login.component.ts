@@ -20,22 +20,8 @@ constructor(private as:AuthService, private router: Router) {
 }
 
   async login() {
-    // const myHeaders = new Headers();
-    // myHeaders.append("Content-Type", "application/json");
-
-    // const raw = JSON.stringify({
-    //   "username": this.username,
-    //   "password": this.password
-    // });
-
-    // const requestOptions: RequestInit = {
-    //   method: 'POST',
-    //   headers: myHeaders,
-    //   body: raw,
-    //   redirect: 'follow'
-    // };
+    
     try {
-     //let resp = await this.as.loginWithUsernameAndPassword(this.username, this.password);
       let resp:any = await this.as.loginWithUsernameAndPassword(this.username, this.password);
       console.log(resp);
       localStorage.setItem('token', resp['token']);
@@ -43,13 +29,12 @@ constructor(private as:AuthService, private router: Router) {
 
 
     } catch(e){
-      // Show error message
       alert('Login ist fehlgeschlagen!');
       console.error(e);
 
     }
   }
 
-  
+ 
 
 }
